@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-
+import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';  // Importa Auth y signInWithEmailAndPassword
 
 @Component({
   selector: 'app-login',
@@ -16,26 +16,28 @@ export class LoginPage {
 
   constructor(
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private auth: Auth  // Usa Auth en lugar de AngularFireAuth
   ) {}
 
-  validateLogin() {
-    if (this.username === 'admin' 
-      && this.password === '12345') {
-      let extras: NavigationExtras = {
-        state: {
-          user: this.username
-        }
+  async validateLogin() {
+    try {
+      const userCredential = await signInWithEmailAndPassword(this.auth, this.username, this.password);
+      
+      if (userCredential.user) {
+        // Autenticación exitosa
+        let extras: NavigationExtras = {
+          state: {
+            user: this.username
+          }
+        };
+        this.toastMessage('Usuario autenticado correctamente', 'success');
+        this.router.navigate(['/home'], extras);
       }
-      this.toastMessage('Usuario y contraseña valido', 'success');
-      this.router.navigate(['/home'], extras);
-    } else {
-      this.toastMessage('Usuario y contraseña no valido', 'danger');
+    } catch (error: any) {
+      // Error en la autenticación
+      this.toastMessage('Error al autenticar: ' + error.message, 'danger');
     }
-  }
-
-  recoverPassword(){
-    
   }
 
   async toastMessage(message: string, color: string) {
@@ -46,6 +48,10 @@ export class LoginPage {
       color: color,
     });
     toast.present();
+  }
+
+  recoverPassword(){
+    
   }
 
 }
