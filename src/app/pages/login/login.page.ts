@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';  // Importa Auth y signInWithEmailAndPassword
+import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';  // Firebase
 
 @Component({
   selector: 'app-login',
@@ -10,25 +10,25 @@ import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';  // Impor
 })
 export class LoginPage {
 
-  username!: string;
+  email!: string;
   password!: string;
   welcomeMessage: string = 'Bienvenido!';
 
   constructor(
     private router: Router,
     private toastController: ToastController,
-    private auth: Auth  // Usa Auth en lugar de AngularFireAuth
+    private auth: Auth  // Firebase
   ) {}
 
   async validateLogin() {
     try {
-      const userCredential = await signInWithEmailAndPassword(this.auth, this.username, this.password);
+      const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
       
       if (userCredential.user) {
         // Autenticación exitosa
         let extras: NavigationExtras = {
           state: {
-            user: this.username
+            user: this.email
           }
         };
         this.toastMessage('Usuario autenticado correctamente', 'success');
@@ -50,8 +50,8 @@ export class LoginPage {
     toast.present();
   }
 
-  recoverPassword(){
-    
+  redirect(){
+    this.router.navigate(['/reset-password']);
   }
 
 }
