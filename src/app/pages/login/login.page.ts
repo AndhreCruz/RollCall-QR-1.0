@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-
+import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';  // Firebase
 
 @Component({
   selector: 'app-login',
@@ -10,32 +10,34 @@ import { ToastController } from '@ionic/angular';
 })
 export class LoginPage {
 
-  username!: string;
+  email!: string;
   password!: string;
   welcomeMessage: string = 'Bienvenido!';
 
   constructor(
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private auth: Auth  // Firebase
   ) {}
 
-  validateLogin() {
-    if (this.username === 'admin' 
-      && this.password === '12345') {
-      let extras: NavigationExtras = {
-        state: {
-          user: this.username
-        }
+  async validateLogin() {
+    try {
+      const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
+      
+      if (userCredential.user) {
+        // Autenticación exitosa
+        let extras: NavigationExtras = {
+          state: {
+            user: this.email
+          }
+        };
+        this.toastMessage('Usuario autenticado correctamente', 'success');
+        this.router.navigate(['/home'], extras);
       }
-      this.toastMessage('Usuario y contraseña valido', 'success');
-      this.router.navigate(['/home'], extras);
-    } else {
-      this.toastMessage('Usuario y contraseña no valido', 'danger');
+    } catch (error: any) {
+      // Error en la autenticación
+      this.toastMessage('Error al autenticar: ' + error.message, 'danger');
     }
-  }
-
-  recoverPassword(){
-    
   }
 
   async toastMessage(message: string, color: string) {
@@ -46,6 +48,10 @@ export class LoginPage {
       color: color,
     });
     toast.present();
+  }
+
+  redirect(){
+    this.router.navigate(['/reset-password']);
   }
 
 }
