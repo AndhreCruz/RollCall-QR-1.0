@@ -1,6 +1,10 @@
 /* #FFCD00;  Amarillo DUOC */
 /* #002855;  Azul oscuro DUOC */
 
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
 /* Fondo blanco para el contenido */
 ion-content {
   --background: #ffffff;
@@ -52,6 +56,11 @@ ion-button {
   --color: #002855; 
   font-size: 16px;
   font-weight:bold;
+  transition: transform 0.2s ease;
+}
+
+ion-button:active {
+  transform: scale(0.95);
 }
 
 /* Estilo personalizado para el toolbar del footer */
