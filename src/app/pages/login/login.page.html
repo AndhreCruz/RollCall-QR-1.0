@@ -5,12 +5,15 @@
   <ion-title class="login-title">
     <h1>Iniciar Sesión</h1>
   </ion-title>
+  <ion-text color="medium">
+    <p>Ingresa tu correo electrónico y contraseña para acceder a tu cuenta</p>
+  </ion-text>  
   <ion-list class="login-list">
     <ion-item class="login-item">
-      <ion-input placeholder="Email" [(ngModel)]="email"></ion-input>
+      <ion-input placeholder="Correo electrónico" [(ngModel)]="email"></ion-input>
     </ion-item>
     <ion-item class="login-item">
-      <ion-input placeholder="Password" [(ngModel)]="password" type="password"></ion-input>
+      <ion-input placeholder="Contraseña" [(ngModel)]="password" type="password"></ion-input>
     </ion-item>
     <ion-button expand="block" (click)="validateLogin()">Ingresar</ion-button>
     <ion-button fill="clear" color="medium" (click)="redirect()">¿Olvidaste tu contraseña?</ion-button>
