@@ -13,7 +13,7 @@
   <hr>
 
   <ion-list>
-    <ion-item *ngFor="let signature of courses">
+    <ion-item *ngFor="let signature of courses" [routerLink]="['/home-user', signature.id]">
       <ion-avatar slot="start">
         <ion-img [src]="signature.imageURL"></ion-img>
       </ion-avatar>
