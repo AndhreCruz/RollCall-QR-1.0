@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule)
+  },  {
+    path: 'home-user',
+    loadChildren: () => import('./pages/home-user/home-user.module').then( m => m.HomeUserPageModule)
   },
+
 
 ];
 
