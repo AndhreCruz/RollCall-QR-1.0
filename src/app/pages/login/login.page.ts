@@ -23,7 +23,7 @@ export class LoginPage {
   async validateLogin() {
     try {
       const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
-      
+
       if (userCredential.user) {
         // Autenticación exitosa
         let extras: NavigationExtras = {
@@ -32,7 +32,7 @@ export class LoginPage {
           }
         };
         this.toastMessage('Usuario autenticado correctamente', 'success');
-        this.router.navigate(['/home'], extras);
+        this.router.navigate(['/home-user'], extras);
       }
     } catch (error: any) {
       // Error en la autenticación

@@ -1,13 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>home-user</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-header></ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home-user</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding ion-text-center login-content">
+  <ion-img src="assets/images/logo.png" class="login-logo"></ion-img>
+
+  <ion-title class="login-title">
+    <h1>[Nombre de la App]</h1>
+  </ion-title>
+
+  <p class="welcome-message">
+    <strong>Bienvenido: </strong> {{ email || 'Default' }}
+  </p>
+  <hr>
+
+  <ion-list>
+    <ion-item *ngFor="let signature of courses">
+      <ion-avatar slot="start">
+        <ion-img [src]="signature.imageURL"></ion-img>
+      </ion-avatar>
+        <ion-label>
+          {{signature.title}}
+        </ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
