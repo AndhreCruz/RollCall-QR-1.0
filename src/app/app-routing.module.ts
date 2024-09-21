@@ -23,6 +23,20 @@ const routes: Routes = [
     path: 'welcome',
     loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule)
   },
+  {
+    path: 'home-user',
+    children: [
+      {
+        path:"",
+        loadChildren: () => import('./pages/home-user/home-user.module').then( m => m.HomeUserPageModule)
+      },
+      {
+        path:":placeId",
+        loadChildren: () => import('./pages/home-user/course-detail/course-detail.module').then( m => m.CourseDetailPageModule)
+      }
+    ]
+  },
+
 
 ];
 
