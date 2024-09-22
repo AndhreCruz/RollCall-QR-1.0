@@ -1,5 +1,37 @@
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+ion-content {
+  --background: #fff;
+}
+
 #course-img{
   height: 18rem;
   position: relative;
   left: 1.3rem;
 }
+
+
+.footer-toolbar {
+  --background: #002855;
+}
+
+
+.footer-title {
+  color: #FFCD00;
+  font-size: 16px;
+}
+
+
+ion-fab-button {
+  --border-radius: 50%; /* Asegura que el botón sea completamente redondo */
+  --width: 70px; /* Tamaño del botón */
+  --height: 70px;
+  --color: #FFCD00;
+  --background: #002855;
+}
+
+

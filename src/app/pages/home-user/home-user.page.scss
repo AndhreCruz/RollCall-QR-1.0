@@ -1,0 +1,56 @@
+/* #FFCD00;  Amarillo DUOC */
+/* #002855;  Azul oscuro DUOC */
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Fondo blanco para el contenido */
+ion-content {
+  --background: #fff;
+}
+
+
+
+/* Estilo para el logo */
+.login-logo {
+  margin: 0.5rem auto 0 auto;
+}
+
+.login-title {
+  font-size: 24px;
+  color: #002855;
+  margin-bottom: 20px;
+}
+
+/* Estilo para la lista y los items */
+.courses-list{
+  background-color: #FFCD00;
+}
+
+
+/* Estilo para los botones */
+ion-button {
+  margin-top: 12px;
+  --background: #FFCD00;
+  --color: #002855;
+  font-size: 16px;
+  font-weight:bold;
+  transition: transform 0.2s ease;
+}
+
+ion-button:active {
+  transform: scale(0.95);
+}
+
+/* Estilo personalizado para el toolbar del footer */
+.footer-toolbar {
+  --background: #002855;
+}
+
+/* Estilo personalizado para el título en el footer */
+.footer-title {
+  color: #FFCD00;
+  font-size: 16px;
+}
+

@@ -15,15 +15,31 @@
         <img alt="Silhouette of a person's head" [src]="course.profileImg" />
       </ion-avatar>
       <ion-card-title>Profesor del Curso</ion-card-title>
-      <ion-card-subtitle>{{course.details[1]}}</ion-card-subtitle>
+      <b> <ion-card-subtitle>{{course.details[1]}}</ion-card-subtitle></b>
     </ion-card-header>
 
     <ion-card-content>
-      Here's a small text description for the card content. Nothing more, nothing less.
+      <ion-text>
+        <p><b> Estado:</b>{{course.details[0]}}</p>
+      </ion-text>
+      <ion-text>
+        <p><b> Porcentaje de asistencia:</b>{{course.details[2]}}</p>
+      </ion-text>
+      <ion-text>
+        <p><b> Total de clases asistidas:</b>{{course.details[3]}}</p>
+      </ion-text>
     </ion-card-content>
   </ion-card>
 
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <!-- <ion-fab-button (click)="openCamera()"> -->
+    <ion-fab-button>
+      <ion-icon name="qr-code"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
+
+
 
 <ion-footer>
   <ion-toolbar class="footer-toolbar">
