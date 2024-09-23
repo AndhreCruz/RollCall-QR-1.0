@@ -3,6 +3,16 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+/* Estilo personalizado para el toolbar del header */
+.header-toolbar {
+  --background: #002855;
+}
+
+/* Estilo personalizado para el título en el header */
+.header-title {
+  color: #FFCD00; 
+  font-size: 16px;
+}
 
 ion-content {
   --background: #fff;

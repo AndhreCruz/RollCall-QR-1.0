@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { User } from 'firebase/auth';
 import {CourseServiceService} from './course-service.service'
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -15,9 +17,12 @@ export class HomeUserPage implements OnInit {
   email: string | null = null;
   courses: any[] = [];
 
-  constructor(private auth: Auth , private courseService: CourseServiceService) {
-
-   }
+  constructor(
+    private router: Router,
+    private toastController: ToastController,
+    private auth: Auth , 
+    private courseService: CourseServiceService,
+  ) {}
 
   ngOnInit() {
     const user: User | null = this.auth.currentUser;
@@ -30,4 +35,18 @@ export class HomeUserPage implements OnInit {
 
   }
 
+  async toastMessage(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+      color: color,
+    });
+    toast.present();
+  }
+
+  logout(){
+    this.toastMessage('Se ha cerrado su sesión', 'success');
+    this.router.navigate(['/login']);
+  }
 }
