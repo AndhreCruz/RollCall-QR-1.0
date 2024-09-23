@@ -1,13 +1,48 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" >
   <ion-toolbar>
-    <ion-title>It Works</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="../home-user.page.html"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-start">{{course.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">course-detail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <img id="course-img" alt="Silhouette of mountains" [src]="course.imageURL" />
+    <ion-card-header>
+      <ion-avatar>
+        <img alt="Silhouette of a person's head" [src]="course.profileImg" />
+      </ion-avatar>
+      <ion-card-title>Profesor del Curso</ion-card-title>
+      <b> <ion-card-subtitle>{{course.details[1]}}</ion-card-subtitle></b>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-text>
+        <p><b> Estado:</b>{{course.details[0]}}</p>
+      </ion-text>
+      <ion-text>
+        <p><b> Porcentaje de asistencia:</b>{{course.details[2]}}</p>
+      </ion-text>
+      <ion-text>
+        <p><b> Total de clases asistidas:</b>{{course.details[3]}}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <!-- <ion-fab-button (click)="openCamera()"> -->
+    <ion-fab-button>
+      <ion-icon name="qr-code"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
+
+
+
+<ion-footer>
+  <ion-toolbar class="footer-toolbar">
+    <ion-title size="large" class="footer-title ion-text-center">Crafted by CodeCrafters</ion-title>
+  </ion-toolbar>
+</ion-footer>
