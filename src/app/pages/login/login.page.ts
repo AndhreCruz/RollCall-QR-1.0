@@ -12,7 +12,6 @@ export class LoginPage {
 
   email!: string;
   password!: string;
-  welcomeMessage: string = 'Bienvenido!';
 
   constructor(
     private router: Router,
@@ -33,6 +32,10 @@ export class LoginPage {
         };
         this.toastMessage('Usuario autenticado correctamente', 'success');
         this.router.navigate(['/home-user'], extras);
+
+        // Limpiar campos
+        this.email = '';
+        this.password = '';
       }
     } catch (error: any) {
       // Error en la autenticación
