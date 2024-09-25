@@ -14,6 +14,10 @@ export class LoginPage {
   password!: string;
   welcomeMessage: string = 'Bienvenido!';
 
+
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
+
   constructor(
     private router: Router,
     private toastController: ToastController,
@@ -25,7 +29,7 @@ export class LoginPage {
       const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
 
       if (userCredential.user) {
-        // Autenticación exitosa
+
         let extras: NavigationExtras = {
           state: {
             user: this.email
@@ -33,10 +37,16 @@ export class LoginPage {
         };
         this.toastMessage('Usuario autenticado correctamente', 'success');
         this.router.navigate(['/home-user'], extras);
+
+        this.email = "";
+        this.password = "";
       }
     } catch (error: any) {
-      // Error en la autenticación
+
       this.toastMessage('Error al autenticar: ' + error.message, 'danger');
+
+      this.email = "";
+      this.password = "";
     }
   }
 
@@ -50,8 +60,17 @@ export class LoginPage {
     toast.present();
   }
 
-  redirect(){
+
+  redirect() {
     this.router.navigate(['/reset-password']);
   }
 
+
+  togglePasswordVisibility() {
+
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
 }
+
