@@ -32,7 +32,7 @@ ion-content {
 /* Estilo para el título de la aplicación */
 .login-title {
   font-size: 24px;
-  color: #002855; 
+  color: #002855;
   margin-bottom: 20px;
 }
 
@@ -44,7 +44,7 @@ ion-content {
 }
 
 .login-item {
-  --background: #ffffff; 
+  --background: #ffffff;
   /* --color: #002855; */
   margin-bottom: 10px;
 }
@@ -53,7 +53,7 @@ ion-content {
 ion-button {
   margin-top: 12px;
   --background: #FFCD00;
-  --color: #002855; 
+  --color: #002855;
   font-size: 16px;
   font-weight:bold;
   transition: transform 0.2s ease;
@@ -65,7 +65,7 @@ ion-button:active {
 
 /* Estilo personalizado para el toolbar del footer */
 .footer-toolbar {
-  --background: #002855; 
+  --background: #002855;
 }
 
 /* Estilo personalizado para el título en el footer */
