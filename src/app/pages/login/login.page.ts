@@ -12,7 +12,6 @@ export class LoginPage {
 
   email!: string;
   password!: string;
-  welcomeMessage: string = 'Bienvenido!';
 
 
   passwordType: string = 'password';
@@ -40,6 +39,7 @@ export class LoginPage {
 
         this.email = "";
         this.password = "";
+
       }
     } catch (error: any) {
 
