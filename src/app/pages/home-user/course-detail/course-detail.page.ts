@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CourseServiceService } from '../course-service.service';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 
 @Component({
@@ -27,23 +27,22 @@ export class CourseDetailPage implements OnInit {
     })
 
   }
-  //Tuve problemas con el capacitor :c  prometo solucionarlo antes de la presentación
-  // async openCamera() {
-  //   try {
-  //     const image = await Camera.getPhoto({
-  //       quality: 90,
-  //       allowEditing: false,
-  //       resultType: CameraResultType.Uri,
-  //       source: 'camera'
-  //     });
 
-  //     const imageUrl = image.webPath; /
-  //     console.log('Imagen capturada: ', imageUrl);
-
-
-  //   } catch (error) {
-  //     console.error('Error al abrir la cámara:', error);
-  //   }
-  // }
+  async openCamera() {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+      });
+  
+      const imageUrl = image.webPath; 
+      console.log('Imagen capturada: ', imageUrl);
+  
+    } catch (error) {
+      console.error('Error al abrir la cámara:', error);
+    }
+  }
 
 }
