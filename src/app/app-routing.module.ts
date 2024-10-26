@@ -30,11 +30,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
 
-  {
-    path: '**',
-    redirectTo: 'error-404',
-    pathMatch: 'full'
-  },
   
   {
     path: 'login',
@@ -66,7 +61,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/error-404/error-404.module').then( m => m.Error404PageModule)
   },
   
-
+  {
+    path: '**',
+    redirectTo: 'error-404',
+    pathMatch: 'full'
+  },
 
 
 ];
