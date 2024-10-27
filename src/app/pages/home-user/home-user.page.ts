@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { User } from 'firebase/auth';
-import {CourseServiceService} from './course-service.service'
+import {CourseServiceService} from '../../services/course-service.service'
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
@@ -20,7 +20,7 @@ export class HomeUserPage implements OnInit {
   constructor(
     private router: Router,
     private toastController: ToastController,
-    private auth: Auth , 
+    private auth: Auth ,
     private courseService: CourseServiceService,
   ) {}
 
