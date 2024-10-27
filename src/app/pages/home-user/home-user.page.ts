@@ -4,6 +4,7 @@ import { User } from 'firebase/auth';
 import {CourseServiceService} from '../../services/course-service.service'
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { LocalStorageService } from '../../services/storage.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class HomeUserPage implements OnInit {
     private toastController: ToastController,
     private auth: Auth ,
     private courseService: CourseServiceService,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit() {
@@ -29,6 +31,9 @@ export class HomeUserPage implements OnInit {
 
     if (user) {
       this.email = user.email;
+      this.localStorageService.setItem('userEmail', this.email);
+    }else{
+      this.email = this.localStorageService.getItem('userEmail');
     }
 
     this.courses = this.courseService.getCourses();
@@ -47,6 +52,7 @@ export class HomeUserPage implements OnInit {
 
   logout(){
     this.toastMessage('Se ha cerrado su sesión', 'success');
+    this.localStorageService.clear();
     this.router.navigate(['/login']);
   }
 }
