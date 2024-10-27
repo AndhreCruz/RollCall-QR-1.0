@@ -10,7 +10,7 @@
 
 /* Estilo personalizado para el título en el header */
 .header-title {
-  color: #FFCD00; 
+  color: #FFCD00;
   font-size: 16px;
 }
 
@@ -44,4 +44,33 @@ ion-fab-button {
   --background: #002855;
 }
 
+.qr-box {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.qr-box ion-icon {
+  border: 1px solid #000;
+  border-radius: 50%;
+  font-size: 3.5rem;
+  padding: 0.6rem;
+  color: #FFCD00;
+  background-color: #002855;
+}
+.qr-box button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0.6rem;
+  border-radius: 50%;
+  font-size: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
 
+.qr-box button:hover {
+  background-color: #004080; /* Cambia el color cuando el botón se pasa por encima */
+}
