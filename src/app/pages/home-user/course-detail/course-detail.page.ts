@@ -1,6 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { CourseServiceService } from '../course-service.service';
+import { CourseServiceService } from '../../../services/course-service.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 
@@ -28,21 +28,5 @@ export class CourseDetailPage implements OnInit {
 
   }
 
-  async openCamera() {
-    try {
-      const image = await Camera.getPhoto({
-        quality: 90,
-        allowEditing: false,
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Camera,
-      });
-  
-      const imageUrl = image.webPath; 
-      console.log('Imagen capturada: ', imageUrl);
-  
-    } catch (error) {
-      console.error('Error al abrir la cámara:', error);
-    }
-  }
 
 }

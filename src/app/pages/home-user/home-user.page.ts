@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { User } from 'firebase/auth';
-import {CourseServiceService} from './course-service.service'
+import {CourseServiceService} from '../../services/course-service.service'
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { LocalStorageService } from '../../services/storage.service';
+import {SignaturesAPIService}  from '../../services/signatures-api.service';
 
 
 @Component({
@@ -16,12 +18,15 @@ export class HomeUserPage implements OnInit {
 
   email: string | null = null;
   courses: any[] = [];
+  signatures: any[]=[];
 
   constructor(
     private router: Router,
     private toastController: ToastController,
-    private auth: Auth , 
+    private auth: Auth ,
     private courseService: CourseServiceService,
+    private localStorageService: LocalStorageService,
+    private signatureService:SignaturesAPIService
   ) {}
 
   ngOnInit() {
@@ -29,11 +34,19 @@ export class HomeUserPage implements OnInit {
 
     if (user) {
       this.email = user.email;
+      this.localStorageService.setItem('userEmail', this.email);
+    }else{
+      this.email = this.localStorageService.getItem('userEmail');
     }
 
     this.courses = this.courseService.getCourses();
 
+    this.signatureService.getSignatures().subscribe((data) => {
+      this.courses = data;
+    });
+
   }
+
 
   async toastMessage(message: string, color: string) {
     const toast = await this.toastController.create({
@@ -47,6 +60,7 @@ export class HomeUserPage implements OnInit {
 
   logout(){
     this.toastMessage('Se ha cerrado su sesión', 'success');
+    this.localStorageService.clear();
     this.router.navigate(['/login']);
   }
 }
