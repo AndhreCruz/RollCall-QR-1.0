@@ -42,11 +42,10 @@ export class HomeUserPage implements OnInit {
     this.courses = this.courseService.getCourses();
 
     this.signatureService.getSignatures().subscribe((data) => {
-      this.courses = data;
+      this.signatures = data;
     });
 
   }
-
 
   async toastMessage(message: string, color: string) {
     const toast = await this.toastController.create({

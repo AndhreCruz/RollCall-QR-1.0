@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SignaturesAPIService {
 
-  private apiUrl = 'http://localhost:3000/news'; // Aquí pones la URL de tu API
+  private apiUrl = 'http://localhost:3000/courses'; // Aquí pones la URL de tu API
 
   constructor(private http: HttpClient) { }
 
