@@ -1,8 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { CourseServiceService } from '../../../services/course-service.service';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-
+import { SignaturesAPIService } from 'src/app/services/signatures-api.service';
 
 @Component({
   selector: 'app-course-detail',
@@ -11,22 +9,29 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class CourseDetailPage implements OnInit {
 
-  course:any;
+  course: any; // Almacena la asignatura seleccionada
+  signatures: any[] = [];
 
-  constructor(private activatedrouter: ActivatedRoute, private coursesdetail: CourseServiceService) { }
+  constructor(
+    private activatedrouter: ActivatedRoute,
+    private signatureService: SignaturesAPIService
+  ) {}
 
   ngOnInit() {
-    this.activatedrouter.paramMap.subscribe(paramMap =>{
-      //TODO se creara futura validación
+    // Captura el id de la URL
+    this.activatedrouter.paramMap.subscribe(paramMap => {
+      const courseId = paramMap.get('placeId'); // Obtén el id de la asignatura
 
-      const recipedId = paramMap.get('placeId');
-      console.log(recipedId)
+      // Llama al servicio para obtener todas las asignaturas
+      this.signatureService.getSignatures().subscribe((data) => {
+        this.signatures = data;
 
-      this.course = this.coursesdetail.getCourse(recipedId);
-      console.log(this.course)
-    })
+        // Encuentra la asignatura que coincide con el id
+        this.course = this.signatures.find(signature => signature.id === courseId);
 
+        console.log(this.course); // Verifica que hayas obtenido la asignatura correcta
+      });
+    });
   }
-
-
 }
+

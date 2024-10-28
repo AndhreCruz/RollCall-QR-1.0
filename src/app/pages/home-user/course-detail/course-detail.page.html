@@ -1,35 +1,37 @@
-<ion-header [translucent]="true" >
+<ion-header [translucent]="true">
   <ion-toolbar class="header-toolbar">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="../home-user.page.html"></ion-back-button>
+      <ion-back-button defaultHref="/home-user"></ion-back-button>
     </ion-buttons>
-    <ion-title class="header-title">{{course.title}}</ion-title>
+    <ion-title class="header-title">{{ course?.title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <img id="course-img" alt="Silhouette of mountains" [src]="course.imageURL" />
+  <ion-card *ngIf="course">
+    <img id="course-img" alt="Course image" [src]="course.imageURL" />
     <ion-card-header>
       <ion-avatar>
-        <img alt="Silhouette of a person's head" [src]="course.profileImg" />
+        <img alt="Profile image" [src]="course.profileImg" />
       </ion-avatar>
       <ion-card-title>Profesor del Curso</ion-card-title>
-      <b> <ion-card-subtitle>{{course.details[1]}}</ion-card-subtitle></b>
+      <b><ion-card-subtitle>{{ course.teacher }}</ion-card-subtitle></b>
     </ion-card-header>
 
     <ion-card-content>
       <ion-text>
-        <p><b> Estado:</b>{{course.details[0]}}</p>
+        <p><b>Estado:</b> {{ course.state }}</p>
       </ion-text>
       <ion-text>
-        <p><b> Porcentaje de asistencia:</b>{{course.details[2]}}</p>
+        <p><b>Porcentaje de asistencia:</b> {{ course.asistance }}</p>
       </ion-text>
       <ion-text>
-        <p><b> Total de clases asistidas:</b>{{course.details[3]}}</p>
+        <p><b>Total de clases asistidas:</b> {{ course.asistance }}</p>
       </ion-text>
     </ion-card-content>
   </ion-card>
+
+
 
   <div class="qr-box">
     <button>
@@ -37,8 +39,6 @@
     </button>
   </div>
 
-
-</ion-content>
 
 <ion-footer>
   <ion-toolbar class="footer-toolbar">
