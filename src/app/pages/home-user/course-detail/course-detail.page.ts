@@ -1,6 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SignaturesAPIService } from 'src/app/services/signatures-api.service';
+import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint, CapacitorBarcodeScannerTypeHintALLOption } from '@capacitor/barcode-scanner';
 
 @Component({
   selector: 'app-course-detail',
@@ -11,6 +12,7 @@ export class CourseDetailPage implements OnInit {
 
   course: any; // Almacena la asignatura seleccionada
   signatures: any[] = [];
+  result: string = ''
 
   constructor(
     private activatedrouter: ActivatedRoute,
@@ -32,6 +34,13 @@ export class CourseDetailPage implements OnInit {
         console.log(this.course); // Verifica que hayas obtenido la asignatura correcta
       });
     });
+  }
+
+  async openCamera(): Promise<void> {
+    const result = await CapacitorBarcodeScanner.scanBarcode({
+      hint: CapacitorBarcodeScannerTypeHint.ALL
+    });
+    this.result = result.ScanResult;
   }
 }
 
